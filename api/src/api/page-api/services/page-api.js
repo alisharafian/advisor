@@ -16,7 +16,7 @@ module.exports = () => ({
     delete : async (del) => {
         const entry = await strapi.db.query('api::page.page').delete({
             data : {
-                
+                id : del.id
             }
         })
     }
