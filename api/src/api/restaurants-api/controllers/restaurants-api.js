@@ -1,6 +1,5 @@
 'use strict';
 const Yup = require ('yup');
-const { findone } = require('../../test/controllers/test');
 
 /**
  * A set of functions called "actions" for `restaurants-api`

@@ -1,6 +1,5 @@
 'use strict';
 const Yup = require ('yup');
-const userCreatService = require('../../create-user-api/services/create-user-api');
 
 /**
  * A set of functions called "actions" for `create-user-api`
@@ -27,18 +26,17 @@ module.exports = {
   create : async (ctx , next) => {
     try {
       const x = ctx.request.body
-      const {EmailAddres} = ctx.request.body
+      const f = ctx.request.body
       await userSchema.validate(ctx.request.body);
-      await userCreatService.findOne({EmailAddres})
-      if(userCreatService) {
-        // const error = new Error ('user allready in data base')
-        // error.statuseCode = 404
-        // throw error
+      const user = await strapi.service('api::create-user-api.create-user-api').findone(f)
+      if(user) {
+        ctx.badRequest(error.message, error)
       } else {
-        console.log(x)
+        console.log(x , f)
         const data = await strapi.service('api::create-user-api.create-user-api').create(x)
         ctx.body = data
       }
+        
     } catch (error) {
         return ctx.badRequest(error.message, error)
     }
