@@ -5,14 +5,12 @@
  */
 
 module.exports = () => ({
-    findone : async () => {
+    findone : async (data) => {
         const entry = await strapi.db.query('api::restaurant.restaurant').findOne({
-            where : {
-                id:this.id
-            }
-        }) 
+            data : {id : data.id}
+        })
         return entry
-    } ,
+      } ,
     create : async (add) => {
         const entry = await strapi.db.query('api::restaurant.restaurant').create({
             data : {

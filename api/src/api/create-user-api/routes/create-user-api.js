@@ -1,22 +1,22 @@
 module.exports = {
   routes: [
-      {
+    {
       method: 'POST',
-      path: '/api-restaurants',
-      handler: 'restaurants-api.create',
+      path: '/create-user-api',
+      handler: 'create-user-api.create',
       config: {
         policies: [],
         middlewares: [],
       },
-     } , 
-     {
+     },
+      {
       method: 'DELETE',
-      path: '/api-restaurants',
-      handler: 'restaurants-api.delete',
+      path: '/create-user-api',
+      handler: 'create-user-api.delete',
       config: {
         policies: [],
         middlewares: [],
       },
-     }
+     } ,
   ],
 };

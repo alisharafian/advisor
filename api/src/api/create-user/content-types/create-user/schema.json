@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "create_users",
+  "info": {
+    "singularName": "create-user",
+    "pluralName": "create-users",
+    "displayName": "CreateUser",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "EmailAddres": {
+      "type": "email"
+    },
+    "UserPassword": {
+      "type": "password"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "Family": {
+      "type": "string"
+    }
+  }
+}

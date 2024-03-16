@@ -1,25 +1,36 @@
 'use strict';
-
-const { create } = require("../../test/controllers/test");
+const Yup = require ('yup');
+const { findone } = require('../../test/controllers/test');
 
 /**
  * A set of functions called "actions" for `restaurants-api`
  */
+let restaurantsScheam = Yup.object().shape({
+  name : Yup.string()
+  .required('please enter your name')
+  .trim()
+})
+
 
 module.exports = {
-  findone: async (ctx, next) => {
-    try {
-      const data = await strapi.service('api::restaurants-api.restaurants-api').findone(); 
-      ctx.body = data
-    } catch (err) {
-      ctx.body = err;
-    } 
-  } ,
   create : async (ctx , next) => {
-    const x = ctx.request.body
-    console.log(x)
-    const data = await strapi.service('api::restaurants-api.restaurants-api').create(x)
-    ctx.body = data
+    try {
+      const x = ctx.request.body
+      const {id} = ctx.request.query
+      await restaurantsScheam.validate(ctx.request.body)
+      await findone({id})
+      if(findone){
+        const error = new Error('resturants already haved wtf??')
+        error.statuseCode = 400
+        throw error
+      } else {
+        console.log(x)
+        const data = await strapi.service('api::restaurants-api.restaurants-api').create(x)
+        ctx.body = data
+      }
+    } catch (error) {
+      return ctx.badRequest(error.message, error)
+    }
   } ,
   delete : async (ctx , next) => {
     const x = ctx.request.query
