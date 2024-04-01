@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_reviews",
+  "info": {
+    "singularName": "user-review",
+    "pluralName": "user-reviews",
+    "displayName": "UserReview",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "text",
+      "required": true
+    },
+    "rate": {
+      "type": "integer",
+      "max": 5,
+      "min": 1,
+      "required": true,
+      "default": 1
+    },
+    "arena": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::arena.arena",
+      "inversedBy": "user_reviews"
+    },
+    "create_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::create-user.create-user",
+      "inversedBy": "user_reviews"
+    }
+  }
+}

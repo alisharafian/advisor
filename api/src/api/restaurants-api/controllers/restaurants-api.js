@@ -1,6 +1,6 @@
 'use strict';
 
-const { create } = require("../../test/controllers/test");
+
 
 /**
  * A set of functions called "actions" for `restaurants-api`

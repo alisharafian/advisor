@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "arenas",
+  "info": {
+    "singularName": "arena",
+    "pluralName": "arenas",
+    "displayName": "arena",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "pic": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "about": {
+      "type": "string"
+    },
+    "info": {
+      "type": "component",
+      "repeatable": true,
+      "component": "restaurant.information"
+    },
+    "user_reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-review.user-review",
+      "mappedBy": "arena"
+    },
+    "faq": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.faq"
+    }
+  }
+}

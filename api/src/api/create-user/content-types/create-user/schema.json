@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "create_users",
+  "info": {
+    "singularName": "create-user",
+    "pluralName": "create-users",
+    "displayName": "Create-User",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50,
+      "minLength": 6
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "password": {
+      "type": "password",
+      "required": true,
+      "minLength": 6,
+      "maxLength": 255
+    },
+    "user_reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::user-review.user-review",
+      "mappedBy": "create_user"
+    },
+    "Confirmed": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "pic": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
