@@ -19,7 +19,7 @@ module.exports = {
      } , {
       method: 'GET',
       path: '/review-api',
-      handler: 'review-api.findone',
+      handler: 'review-api.findMany',
       config: {
         policies: [],
         middlewares: [],

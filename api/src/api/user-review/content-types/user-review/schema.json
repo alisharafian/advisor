@@ -34,6 +34,11 @@
       "relation": "manyToOne",
       "target": "api::create-user.create-user",
       "inversedBy": "user_reviews"
+    },
+    "Confirm": {
+      "type": "boolean",
+      "default": true,
+      "required": true
     }
   }
 }

@@ -8,10 +8,10 @@ module.exports = () => ({
     create: async (data) =>{
         const entry = await strapi.db.query('api::create-user.create-user').create({
             data : {
-                username : data.username , email: data.email , password : data.password , confrimed:data.confrimed
+                username : data.username , email: data.email , password : data.password ,
+                 confrimed:data.confrimed
             }
         })
-
         return entry
     } ,
     delete : async (data) => {
@@ -32,7 +32,8 @@ module.exports = () => ({
     } ,
     findone : async (data) => {
         const entry = await strapi.db.query('api::create-user.create-user').findOne({
-            where : {id : data.id} 
+            where : {username : data.username} , 
+            populate : true
         })
         return entry
     }

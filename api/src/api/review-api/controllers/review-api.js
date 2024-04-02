@@ -34,11 +34,11 @@ module.exports = {
       ctx.body = err
     }
   } ,
-  findone : async(ctx , next) => {
+  findMany : async(ctx , next) => {
     try {
       const x = ctx.request.query
       console.log(x)
-      const result = await strapi.service('api::review-api.review-api').findone(x)
+      const result = await strapi.service('api::review-api.review-api').findMany(x)
       ctx.body = result
     } catch (err) {
       ctx.body = err

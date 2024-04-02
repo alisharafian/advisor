@@ -19,11 +19,6 @@
       "type": "component",
       "repeatable": false,
       "component": "restaurant.location"
-    },
-    "user_reviews": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::user-review.user-review"
     }
   }
 }

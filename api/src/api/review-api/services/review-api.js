@@ -23,10 +23,11 @@ module.exports = () => ({
         })
         return entry
     } ,
-    findone : async (data) => {
-        const entry = await strapi.db.query('api::user-review.user-review').findOne({
-            where : {id : data.id}
+    findMany : async (data) => {
+        const entry = await strapi.db.query('api::user-review.user-review').findMany({
+            populate : {confirm : true}
         })
         return entry
     } ,
+
 });

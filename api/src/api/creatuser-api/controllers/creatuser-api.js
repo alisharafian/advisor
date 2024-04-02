@@ -17,17 +17,32 @@ let schema = Yup.object().shape({
 
 
 module.exports = {
-  create: async (ctx, next) => {
+  create : async (ctx , next) => {
     try {
-      const x = ctx.request.body
-      console.log(x)
       await schema.validate(ctx.request.body)
-      const result = await strapi.service('api::creatuser-api.creatuser-api').create(x)
-      ctx.body = result
+      const {username , password , email} = ctx.request.body
+      const user = await strapi.service('api::creatuser-api.creatuser-api').findone({username})
+      if (user) {
+        return ctx.badRequest('username are used')
+      } else {
+        const result = strapi.service('api::creatuser-api.creatuser-api').create({username , password , email})
+        ctx.body = result
+      }
     } catch (err) {
-      ctx.body = err;
+      ctx.body = err
     }
   } ,
+  // create: async (ctx, next) => {
+  //   try {
+  //     const x = ctx.request.body
+  //     console.log(x)
+  //     await schema.validate(ctx.request.body)
+  //     const result = await strapi.service('api::creatuser-api.creatuser-api').create(x)
+  //     ctx.body = result
+  //   } catch (err) {
+  //     ctx.body = err;
+  //   }
+  // } ,
   delete : async (ctx , next)=> {
     try {
       const x = ctx.request.query

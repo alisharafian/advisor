@@ -9,34 +9,33 @@ let schema = Yup.object().shape({
 })
 
 module.exports = {
-  // create: async (ctx, next) => {
-  //   try {
-  //     await schema.validate(ctx.request.body)
-  //     const {name , pic}=ctx.request.body
-  //     console.log(ctx.request.body);
-  //     const find = strapi.service('api::arena-api.arena-api').findone({name})
-  //       if(find){
-  //           // return ctx.badRequest('arena already have')
-  //          ctx.body = err
-  //       } else {
-  //         console.log("moti2");
-  //         const result = strapi.service('api::arena-api.arena-api').create({name , pic})
-  //         ctx.body = result
-  //       }
-  //   } catch (err) {
-  //     ctx.body = err;
-  //   }
-  // } ,
-  create : async (ctx ,next) => {
+  create: async (ctx, next) => {
     try {
       await schema.validate(ctx.request.body)
-      const x = ctx.request.body
-      const result = await strapi.service('api::arena-api.arena-api').create(x)
-      ctx.body = result
+      const {name , pic}=ctx.request.body
+      const find = await strapi.service('api::arena-api.arena-api').findone({name})
+      console.log("1" , find);
+        if(find){
+            return ctx.badRequest('arena already have')
+
+        } else {
+          const result =await strapi.service('api::arena-api.arena-api').create({name , pic})
+          ctx.body = result
+        }
     } catch (err) {
-      ctx.body = err
+      ctx.body = err;
     }
   } ,
+  // create : async (ctx ,next) => {
+  //   try {
+  //     await schema.validate(ctx.request.body)
+  //     const x = ctx.request.body
+  //     const result = await strapi.service('api::arena-api.arena-api').create(x)
+  //     ctx.body = result
+  //   } catch (err) {
+  //     ctx.body = err
+  //   }
+  // } 
   update :async (ctx , next) =>{
     try {
       const x = ctx.request.body

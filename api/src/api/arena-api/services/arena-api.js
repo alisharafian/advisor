@@ -29,17 +29,9 @@ module.exports = () => ({
     findone : async (data) => {
         const entry = strapi.db.query('api::arena.arena').findOne({
             where : {
-                id:data.id
+                name : data.name
             }
         })
         return entry
-    } ,
-    // findone : async (data) => {
-    //     const entry = strapi.db.query('api::arena.arena').findOne({
-    //         where : {
-    //             name:data.name
-    //         }
-    //     })
-    //     return entry
-    // }
+    } 
 });
