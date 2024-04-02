@@ -17,7 +17,6 @@ module.exports = {
       console.log("1" , find);
         if(find){
             return ctx.badRequest('arena already have')
-
         } else {
           const result =await strapi.service('api::arena-api.arena-api').create({name , pic})
           ctx.body = result
@@ -26,16 +25,6 @@ module.exports = {
       ctx.body = err;
     }
   } ,
-  // create : async (ctx ,next) => {
-  //   try {
-  //     await schema.validate(ctx.request.body)
-  //     const x = ctx.request.body
-  //     const result = await strapi.service('api::arena-api.arena-api').create(x)
-  //     ctx.body = result
-  //   } catch (err) {
-  //     ctx.body = err
-  //   }
-  // } 
   update :async (ctx , next) =>{
     try {
       const x = ctx.request.body
